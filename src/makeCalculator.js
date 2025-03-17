@@ -9,15 +9,21 @@ function makeCalculator() {
     result: 0,
 
     add(num) {
-      return this.result + num;
+      this.result += num;
+
+      return this;
     },
 
     subtract(num) {
-      return this.result - num;
+      this.result -= num;
+
+      return this;
     },
 
     multiply(num) {
-      return this.result * num;
+      this.result *= num;
+
+      return this;
     },
 
     divide(num) {
@@ -25,11 +31,15 @@ function makeCalculator() {
         throw new Error('Cannot divide by zero!');
       }
 
-      return this.result / num;
+      this.result /= num;
+
+      return this;
     },
 
     operate(operation, num) {
-      this.result = operation.call(this, num);
+      if (typeof operation === 'function') {
+        this.result = operation.call(this, num);
+      }
 
       return this;
     },
