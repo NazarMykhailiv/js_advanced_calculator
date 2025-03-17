@@ -38,7 +38,7 @@ function makeCalculator() {
 
     operate(operation, num) {
       if (typeof operation === 'function') {
-        this.result = operation.call(this, num);
+        operation.call(this, num);
       }
 
       return this;
